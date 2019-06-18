@@ -2,36 +2,46 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+    const course = 'Half Stack application development'
+    const part1 = 'Fundamentals of React'
+    const exercises1 = 10
+    const part2 = 'Using props to pass data'
+    const exercises2 = 7
+    const part3 = 'State of a component'
+    const exercises3 = 14
 
-  return (
-    <div>
-      <Header name ={course}/>
-      <Content part={part1} nr={exercises1}/>
-      <Content part={part2} nr={exercises2}/>
-      <Content part={part3} nr={exercises3}/>
-      <Total one={exercises1} two={exercises2} three={exercises3} />    
-    </div>
-  )
+    return (
+        <div>
+            <Header name={course} />
+            <Content part1={part1} nr1={exercises1}
+                part2={part2} nr2={exercises2}
+                part3={part3} nr3={exercises3} />
+            <Total one={exercises1} two={exercises2} three={exercises3} />
+        </div>
+    )
 }
 
 const Header = (props) => {
-    return(
+    return (
         <div>
             <h1>{props.name}</h1>
         </div>
-        
+
     )
 }
 
 const Content = (props) => {
-    return(
+    return (
+        <div>
+            <Part part={props.part1} nr={props.nr1} />
+            <Part part={props.part2} nr={props.nr2} />
+            <Part part={props.part3} nr={props.nr3} />
+        </div>
+    )
+}
+
+const Part = (props) => {
+    return (
         <div>
             <p>{props.part} {props.nr}</p>
         </div>
@@ -39,14 +49,14 @@ const Content = (props) => {
 }
 
 const Total = (props) => {
-    
-    return(
+
+    return (
         <div>
-            <p> Number of exercises {props.one+props.two+props.three} </p>
+            <p> Number of exercises {props.one + props.two + props.three} </p>
         </div>
     )
 }
-   
+
 
 
 
