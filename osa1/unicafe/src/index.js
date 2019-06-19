@@ -11,12 +11,20 @@ const App = () => {
         setGood(good+1)
     }
     const addNeutral = () => {
-        console.log('moromitääijä')
         setNeutral (neutral+1)
     }
     const addBad = () => {
         setBad (bad+1)
     }
+
+    let total = good+neutral+bad
+    
+
+    let average = (good-bad)/total
+    
+
+    let positive = good/total*100 + '%'
+    
 
   return (
     <div>
@@ -29,6 +37,9 @@ const App = () => {
     <Display text = 'good' value = {good}/>
     <Display text = 'neutral' value = {neutral}/>
     <Display text = 'bad' value = {bad}/>
+    <Display text = 'all' value = {total}/>
+    <Display text = 'average' value = {average}/>
+    <Display text = 'positive' value = {positive}/>
     </div>
   )
 }
