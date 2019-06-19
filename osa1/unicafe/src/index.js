@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Statistics = ({good, neutral, bad, total, average, positive}) => {
+const Statistics = ({ good, neutral, bad, total, average, positive }) => {
 
-  if (total===0){
+  if (total === 0) {
     return <p>No feedback given</p>
   }
 
 
-  return <div>
+  return <table>
+    <tbody>
     <Statistic text='good' value={good} />
     <Statistic text='neutral' value={neutral} />
     <Statistic text='bad' value={bad} />
     <Statistic text='all' value={total} />
     <Statistic text='average' value={average} />
     <Statistic text='positive' value={positive} />
-  </div>
+    </tbody>
+  </table>
 }
 
 const App = () => {
@@ -37,11 +39,9 @@ const App = () => {
   let total = good + neutral + bad
 
 
-  let average = (good - bad) / total
+  let average = ((good - bad) / total).toFixed(2)
 
-
-  let positive = good / total * 100 + '%'
-
+  let positive = (good / total * 100).toFixed(2) + '%'
 
   return (
     <div>
@@ -52,21 +52,21 @@ const App = () => {
 
       <h1> statistics </h1>
       <Statistics good={good} neutral={neutral} bad={bad} total={total}
-       average={average} positive={positive} />
+        average={average} positive={positive} />
     </div>
-    )
-  }
-  
-const Button = ({onClick, text }) => (
-  <button onClick={onClick}>
-        {text}
-      </button>
-      )
-      
-      
-      
-const Statistic = props => <div>{props.text} {props.value}</div>
+  )
+}
 
-      ReactDOM.render(<App />,
-        document.getElementById('root')
+const Button = ({ onClick, text }) => (
+  <button onClick={onClick}>
+    {text}
+  </button>
+)
+
+
+
+const Statistic = props => <tr><th>{props.text}</th><th>{props.value}</th></tr>
+
+ReactDOM.render(<App />,
+  document.getElementById('root')
 )
