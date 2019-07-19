@@ -31,7 +31,7 @@ const App = (props) => {
     setSelected(Randomize)
   }
 
-  
+
 
   const upvote = () => {
     const copy = [...votes]
@@ -39,17 +39,22 @@ const App = (props) => {
     setVotes(copy)
   }
 
+  const indexOfHighestValue = votes.indexOf(Math.max(...votes))
+
 
   return (
     <div>
-
+      <div>
+      <h1>Random anecdote</h1>
       {props.anecdotes[selected]}
       <p>has {votes[selected]} votes</p>
       <Button text='upvote' onClick={upvote} />
       <Button text='another one' onClick={newNumber} />
-
-
-
+      </div>
+      <div>
+      <h1>Anecdote with most upvotes</h1>
+      {props.anecdotes[indexOfHighestValue]}
+      </div>
     </div>
   )
 }
