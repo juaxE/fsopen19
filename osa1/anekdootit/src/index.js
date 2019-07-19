@@ -10,25 +10,6 @@ const Button = ({ onClick, text }) => (
 const Randomize = () => {
   return Math.floor(Math.random() * anecdotes.length)
 }
-
-const App = (props) => {
-  const [selected, setSelected] = useState(0)
-
-  const newNumber = (newValue) => {
-    setSelected(Randomize)
-  }
-  return (
-    <div>
-      <Button text='another one' onClick={newNumber} />
-
-      {props.anecdotes[selected]}
-
-    </div>
-  )
-}
-
-
-
 const anecdotes = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
@@ -37,6 +18,44 @@ const anecdotes = [
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
+const emptyVotes = new Array(anecdotes.length + 1).join('0').split('').map(parseFloat)
+
+
+const App = (props) => {
+
+
+  const [votes, setVotes] = useState(emptyVotes)
+  const [selected, setSelected] = useState(0)
+
+  const newNumber = () => {
+    setSelected(Randomize)
+  }
+
+  
+
+  const upvote = () => {
+    const copy = [...votes]
+    copy[selected] += 1
+    setVotes(copy)
+  }
+
+
+  return (
+    <div>
+
+      {props.anecdotes[selected]}
+      <p>has {votes[selected]} votes</p>
+      <Button text='upvote' onClick={upvote} />
+      <Button text='another one' onClick={newNumber} />
+
+
+
+    </div>
+  )
+}
+
+
+
 
 ReactDOM.render(
   <App anecdotes={anecdotes} />,
