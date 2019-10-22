@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import axios from 'axios'
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ])
 
+  ])
+  
+  axios
+  .get('http://localhost:3001/persons')
+  .then(response => {
+    const persons = response.data
+    setPersons(persons)
+  })
 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
@@ -39,6 +43,7 @@ const App = () => {
       window.alert(`${newName} is already in the phonebook`)
       : setPersons(persons.concat(personObject))
     setNewName('')
+    setNewNumber('')
       ;
   }
 
@@ -56,14 +61,14 @@ const App = () => {
         handle={handleFilterChange} />
       <h3>add a new number</h3>
       <PersonForm submit={newPerson}
-        name = {newName}
-        nameHandle = {handleNameChange}
-        number = {newNumber}
-        numberHandle = {handleNumberChange}
-        />
-      
+        name={newName}
+        nameHandle={handleNameChange}
+        number={newNumber}
+        numberHandle={handleNumberChange}
+      />
+
       <h2>Numbers</h2>
-      <Persons numbers = {numbers()} />
+      <Persons numbers={numbers()} />
 
     </div>
   )
