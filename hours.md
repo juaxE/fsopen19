@@ -1,11 +1,9 @@
 part 0
 3
 part 1
-6
-1
+7
 part 2
-2
-3
+7
 part 3
 
 part 4
