@@ -1,0 +1,20 @@
+.Notify{
+    color: green;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.Notify-Error{
+    color: red;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+  
+}
