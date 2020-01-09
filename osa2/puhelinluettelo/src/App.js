@@ -85,9 +85,7 @@ const App = () => {
     }, 5000)
   
 
-  const deletePerson = (event) => {
-    event.preventDefault()
-    const id = Number(event.target.value)
+  const deletePerson = (id) => {    
     const p = persons.filter(person => person.id === id)
     window.confirm(`Are you sure you want to delete ${p[0].name}`)
       ?
@@ -121,8 +119,8 @@ const App = () => {
 
   const numbers = () =>
     persons.filter(person => person.name.toUpperCase().includes(newCondition.toUpperCase())).map(person =>
-      <div key={person.name} value={person.id}>
-        <li >{person.name} {person.number}</li> <button key={person.name} value={person.id} onClick={deletePerson}>delete</button>
+      <div key={person.name}>
+        <li >{person.name} {person.number}</li> <button onClick={() => deletePerson(person.id)}>delete</button>
       </div>)
 
   return (
